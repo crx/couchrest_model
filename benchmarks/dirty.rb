@@ -6,7 +6,7 @@ require 'benchmark'
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'couchrest_model'
 
-class BenchmarkCasted < Hash
+class BenchmarkCasted < CouchRest::Document
   include CouchRest::Model::CastedModel
   
   property :name

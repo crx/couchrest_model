@@ -1,6 +1,6 @@
 require 'cat'
 
-class Person < Hash
+class Person < CouchRest::Document
   include ::CouchRest::Model::CastedModel
   property :pet, Cat
   property :name, [String]
