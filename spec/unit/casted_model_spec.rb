@@ -1,7 +1,7 @@
 # encoding: utf-8
 require "spec_helper"
 
-class WithCastedModelMixin < Hash
+class WithCastedModelMixin < CouchRest::Document
   include CouchRest::Model::CastedModel
   property :name
   property :no_value
@@ -22,7 +22,7 @@ class DummyModel < CouchRest::Model::Base
   end
 end
 
-class WithCastedCallBackModel < Hash
+class WithCastedCallBackModel < CouchRest::Document
   include CouchRest::Model::CastedModel
   property :name
   property :run_before_validation
@@ -46,11 +46,11 @@ end
 
 describe CouchRest::Model::CastedModel do
 
-  describe "A non hash class including CastedModel" do
+  describe "A non CouchRest::Document class including CastedModel" do
     it "should fail raising and include error" do
       lambda do
-        class NotAHashButWithCastedModelMixin
-          include CouchRest::CastedModel
+        class NotACouchRestModelButWithCastedModelMixin
+          include CouchRest::Model::CastedModel
           property :name
         end
 

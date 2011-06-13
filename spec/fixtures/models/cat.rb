@@ -1,5 +1,5 @@
 
-class CatToy < Hash
+class CatToy < CouchRest::Document
   include ::CouchRest::Model::CastedModel
 
   property :name

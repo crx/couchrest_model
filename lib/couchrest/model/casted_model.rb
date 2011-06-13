@@ -21,11 +21,16 @@ module CouchRest::Model
         end
       end
     end
+    
+    def self.included(base)
+      unless base < CouchRest::Document
+        raise "Casted models must inherit from CouchRest::Document"
+      end
+    end
 
-    def initialize(keys = {})
-      raise StandardError unless self.is_a? Hash
-      prepare_all_attributes(keys)
+    def initialize(attributes = {})
       super()
+      prepare_all_attributes(attributes)
     end
 
     def []= key, value
@@ -67,6 +72,13 @@ module CouchRest::Model
     end
     alias :attributes= :update_attributes_without_saving
 
+    def update_attributes(*args)
+      raise NoMethodError
+    end
+    
+    def save(*args)
+      raise NoMethodError
+    end
   end
 
 end
